@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16.0)
 
 project(roottask C)
 
-s#et(configure_string "")
+#set(configure_string "")
 
 find_package(seL4 REQUIRED)
 find_package(elfloader-tool REQUIRED)
