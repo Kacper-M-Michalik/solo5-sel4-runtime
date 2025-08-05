@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <manifest>
-    <remote name="seL4" fetch="."/>
-    <remote name="seL4-projects" fetch="../seL4proj"/>
+    <remote name="seL4" fetch="https://github.com/seL4/"/>
+    <remote name="runtime" fetch="../Kacper-M-Michalik/"/>
 
     <default revision="master" remote="seL4"/>
+    <default revision="master" remote="runtime"/>
 
     <project name="seL4" path="kernel"/>
     <project name="seL4_tools" path="tools/seL4">
@@ -15,7 +15,7 @@
     <project name="seL4_libs" path="projects/seL4_libs"/>
     <project name="util_libs" path="projects/util_libs"/>
     <project name="musllibc" path="projects/musllibc" revision="sel4"/>
-    <project name="sel4runtime.git" path="projects/sel4runtime"/>
+    <project name="sel4runtime" path="projects/sel4runtime"/>
 
     <project name="solo5-sel4-runtime" path="projects/solo5-sel4-runtime">
         <linkfile src="README.md" dest="README.md"/>
