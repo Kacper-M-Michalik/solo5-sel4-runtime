@@ -16,8 +16,8 @@
     <project name="musllibc" path="projects/musllibc" revision="sel4"/>
     <project name="sel4runtime" path="projects/sel4runtime"/>
 
-    <project name="solo5-sel4-runtime" remote="runtime" path="projects/solo5-sel4-runtime">
+    <project name="solo5-sel4-runtime" remote="runtime" revision="main" path="projects/solo5-sel4-runtime">
         <linkfile src="README.md" dest="README.md"/>
-        <!-- <linkfile src="settings.cmake" dest="settings.cmake"/> -->
+        <linkfile src="settings.cmake" dest="settings.cmake"/>
     </project>
 </manifest>
