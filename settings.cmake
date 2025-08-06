@@ -1,11 +1,6 @@
-include_guard(GLOBAL)
-
 cmake_minimum_required(VERSION 3.16.0)
 
-set(RELEASE OFF CACHE BOOL "Performance optimized build")
-set(SIMULATION OFF CACHE BOOL "Simulation build")
-
-set(project_dir "${CMAKE_CURRENT_LIST_DIR}")
+set(project_dir "${CMAKE_CURRENT_LIST_DIR}/../..")
 file(GLOB project_modules ${project_dir}/projects/*)
 list(
     APPEND
@@ -16,8 +11,13 @@ list(
         ${project_modules}
 )
 
+# Necessary?
+set(SEL4_CONFIG_DEFAULT_ADVANCED ON)
 
 include(application_settings)
+
+include(${CMAKE_CURRENT_LIST_DIR}/easy-settings.cmake)
+
 correct_platform_strings()
 
 find_package(seL4 REQUIRED)
@@ -30,14 +30,35 @@ if(NOT "${PLATFORM}" IN_LIST valid_platforms)
 Valid platforms are: \"${valid_platforms}\"")
 endif()
 
-# Necessary?
-include(${project_dir}/kernel/configs/seL4Config.cmake)
+# Declare a cache variable that enables/disablings the forcing of cache variables to
+# the specific test values. By default it is disabled
+#set(Sel4testAllowSettingsOverride OFF CACHE BOOL "Allow user to override configuration settings")
+#if(NOT Sel4testAllowSettingsOverride)
+    # We use 'FORCE' when settings these values instead of 'INTERNAL' so that they still appear
+    # in the cmake-gui to prevent excessively confusing users
+#    if(ARM_HYP)
+#        set(KernelArmHypervisorSupport ON CACHE BOOL "" FORCE)
+#    endif()
 
+#    if(KernelSel4ArchAarch32)
+#        set(KernelArmTLSReg tpidruro CACHE STRING "" FORCE)
+#    endif()
+#    if(KernelSel4ArchAarch64)
+#        set(KernelArmTLSReg tpidru CACHE STRING "" FORCE)
+#    endif()
 
-ApplyCommonReleaseVerificationSettings(${RELEASE} OFF)
+#    if(KernelPlatformQEMUArmVirt OR KernelPlatformQEMURiscVVirt OR KernelPlatformSpike)
+#        set(SIMULATION ON CACHE BOOL "" FORCE)
+#    endif()
 
-if(SIMULATION)
-    include(simulation)
-    ApplyCommonSimulationSettings(${KernelSel4Arch})
-    GenerateSimulateScript()    
-endif()
+#    if(SIMULATION)
+#        ApplyCommonSimulationSettings(${KernelSel4Arch})
+#    else()
+#        if(KernelArchX86)
+#            set(KernelIOMMU ON CACHE BOOL "" FORCE)
+#        endif()
+#    endif()
+
+ApplyCommonReleaseVerificationSettings(${RELEASE} ${VERIFICATION})
+
+#endif()

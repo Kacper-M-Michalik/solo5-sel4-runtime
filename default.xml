@@ -8,7 +8,6 @@
     <project name="seL4" path="kernel"/>
     <project name="seL4_tools" path="tools/seL4">
         <linkfile src="cmake-tool/init-build.sh" dest="init-build.sh"/>
-        <linkfile src="cmake-tool/default-CMakeLists.txt" dest="CMakeLists.txt"/>
     </project>
 
     <project name="seL4_libs" path="projects/seL4_libs"/>
@@ -17,7 +16,7 @@
     <project name="sel4runtime" path="projects/sel4runtime"/>
 
     <project name="solo5-sel4-runtime" remote="runtime" revision="main" path="projects/solo5-sel4-runtime">
-        <linkfile src="README.md" dest="README.md"/>
-        <linkfile src="settings.cmake" dest="settings.cmake"/>
+        <linkfile src="README.md" dest="README.md"/>        
+        <linkfile src="easy-settings.cmake" dest="easy-settings.cmake"/>
     </project>
 </manifest>
