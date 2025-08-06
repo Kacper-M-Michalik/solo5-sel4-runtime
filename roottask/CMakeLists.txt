@@ -10,7 +10,6 @@ find_package(elfloader-tool REQUIRED)
 find_package(musllibc REQUIRED)
 find_package(util_libs REQUIRED)
 find_package(seL4_libs REQUIRED)
-find_package(sel4_projects_libs REQUIRED)
 
 sel4_import_kernel()
 elfloader_import_project()

@@ -30,8 +30,8 @@ include(application_settings)
 
 correct_platform_strings()
 
-#find_package(seL4 REQUIRED)
-#sel4_configure_platform_settings()
+find_package(seL4 REQUIRED)
+sel4_configure_platform_settings()
 
 set(valid_platforms ${KernelPlatform_all_strings} ${correct_platform_strings_platform_aliases})
 set_property(CACHE PLATFORM PROPERTY STRINGS ${valid_platforms})
