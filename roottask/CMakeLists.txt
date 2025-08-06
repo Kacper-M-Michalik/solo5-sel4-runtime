@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.16.0)
 
-project(roottask C)
+project(runtimeroot C)
 
 set(configure_string "")
 
 find_package(musllibc REQUIRED)
 find_package(util_libs REQUIRED)
 find_package(seL4_libs REQUIRED)
-find_package(sel4_projects_libs REQUIRED)
+#find_package(sel4_projects_libs REQUIRED)
 
 musllibc_setup_build_environment_with_sel4runtime()
 sel4_import_libsel4()
@@ -16,7 +16,7 @@ sel4_libs_import_libraries()
 
 #sel4_projects_libs_import_libraries()
 
-add_config_library(roottask "${configure_string}")
+add_config_library(runtimeroot "${configure_string}")
 
 file(
     GLOB
@@ -28,13 +28,13 @@ file(
         #src/plat/${KernelPlatform}/*.S
 )
 
-add_executable(roottask EXCLUDE_FROM_ALL ${static})
-target_include_directories(roottask PRIVATE "include")
+add_executable(runtimeroot EXCLUDE_FROM_ALL ${static})
+target_include_directories(runtimeroot PRIVATE "include")
 target_link_libraries(
-    roottask
+    runtimeroot
     PUBLIC
         sel4
-        sel4_autoconf
+        #sel4_autoconf
         sel4runtime
         muslc
         sel4muslcsys        
@@ -46,7 +46,7 @@ target_link_libraries(
         sel4platsupport    
         sel4serialserver
 )
-#target_compile_options(roottask PRIVATE -Werror -g)
+#target_compile_options(runtimeroot PRIVATE -Werror -g)
 
 include(rootserver)
-DeclareRootserver(roottask)
+DeclareRootserver(runtimeroot)

@@ -37,7 +37,7 @@ endif()
     # We use 'FORCE' when settings these values instead of 'INTERNAL' so that they still appear
     # in the cmake-gui to prevent excessively confusing users
 #    if(ARM_HYP)
-#        set(KernelArmHypervisorSupport ON CACHE BOOL "" FORCE)
+set(KernelArmHypervisorSupport OFF CACHE BOOL "" FORCE)
 #    endif()
 
 #    if(KernelSel4ArchAarch32)
@@ -54,9 +54,9 @@ endif()
 #    if(SIMULATION)
 #        ApplyCommonSimulationSettings(${KernelSel4Arch})
 #    else()
-#        if(KernelArchX86)
-#            set(KernelIOMMU ON CACHE BOOL "" FORCE)
-#        endif()
+if(KernelArchX86)
+    set(KernelIOMMU ON CACHE BOOL "" FORCE)
+endif()
 #    endif()
 
 ApplyCommonReleaseVerificationSettings(${RELEASE} ${VERIFICATION})
