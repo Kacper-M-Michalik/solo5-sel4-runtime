@@ -1,3 +1,3 @@
 set(RELEASE OFF CACHE BOOL "Performance optimized build")
-set(SIMULATION ON CACHE BOOL "Simulation build")
-set(VERIFICATION ON CACHE BOOL "Use verification kernel build settings")
+set(SIMULATION OFF CACHE BOOL "Simulation build")
+set(VERIFICATION OFF CACHE BOOL "Use verification kernel build settings")
