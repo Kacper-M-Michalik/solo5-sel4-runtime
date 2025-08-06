@@ -1,19 +1,9 @@
+include_guard(GLOBAL)
+
 cmake_minimum_required(VERSION 3.16.0)
 
 set(RELEASE OFF CACHE BOOL "Performance optimized build")
 set(SIMULATION OFF CACHE BOOL "Simulation build")
-
-#include(${CMAKE_CURRENT_LIST_DIR}/tools/seL4/cmake-tool/helpers/application_settings.cmake)
-#include(${CMAKE_CURRENT_LIST_DIR}/kernel/configs/seL4Config.cmake)
-#correct_platform_strings()
-#ApplyCommonReleaseVerificationSettings(${RELEASE} OFF)
-#if(SIMULATION)
-#   include(${CMAKE_CURRENT_LIST_DIR}/tools/seL4/cmake-tool/helpers/simulation.cmake)
-#   ApplyCommonSimulationSettings(${KernelSel4Arch})
-#   GenerateSimulateScript()    
-#endif()
-
-cmake_minimum_required(VERSION 3.16.0)
 
 set(project_dir "${CMAKE_CURRENT_LIST_DIR}")
 file(GLOB project_modules ${project_dir}/projects/*)
@@ -26,8 +16,8 @@ list(
         ${project_modules}
 )
 
-include(application_settings)
 
+include(application_settings)
 correct_platform_strings()
 
 find_package(seL4 REQUIRED)
@@ -39,6 +29,10 @@ if(NOT "${PLATFORM}" IN_LIST valid_platforms)
     message(FATAL_ERROR "Invalid PLATFORM selected: \"${PLATFORM}\"
 Valid platforms are: \"${valid_platforms}\"")
 endif()
+
+# Necessary?
+include(${project_dir}/kernel/configs/seL4Config.cmake)
+
 
 ApplyCommonReleaseVerificationSettings(${RELEASE} OFF)
 

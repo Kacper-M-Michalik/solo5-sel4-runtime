@@ -4,7 +4,7 @@ project(roottask C)
 
 #set(configure_string "")
 
-find_package(seL4 REQUIRED)
+#find_package(seL4 REQUIRED)
 find_package(elfloader-tool REQUIRED)
 
 find_package(musllibc REQUIRED)
@@ -30,15 +30,16 @@ add_executable(roottask)
 target_include_directories(roottask PRIVATE "include")
 target_link_libraries(
     roottask
-    sel4_autoconf
-    muslc
     sel4
     sel4runtime
+    muslc
+    sel4muslcsys
+    utils    
+    sel4debug    
     sel4allocman
     sel4vka
     sel4utils
-    sel4platsupport
-    sel4muslcsys
+    sel4platsupport    
     sel4serialserver
 )
 
