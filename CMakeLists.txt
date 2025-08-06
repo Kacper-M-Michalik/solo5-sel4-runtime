@@ -29,6 +29,7 @@ if(SIMULATION)
     #if(KernelPlatformQEMUArmVirt)
     #    SetSimulationScriptProperty(MEM_SIZE "2G")
     #endif()
+    
     include(simulation)
     GenerateSimulateScript()
 endif()
