@@ -11,8 +11,8 @@ list(
         ${project_modules}
 )
 
-# Necessary?
-set(SEL4_CONFIG_DEFAULT_ADVANCED ON)
+# Breaks running x86_64 in QEMU?
+#set(SEL4_CONFIG_DEFAULT_ADVANCED ON)
 
 include(application_settings)
 
@@ -29,6 +29,10 @@ if(NOT "${PLATFORM}" IN_LIST valid_platforms)
     message(FATAL_ERROR "Invalid PLATFORM selected: \"${PLATFORM}\"
 Valid platforms are: \"${valid_platforms}\"")
 endif()
+
+message("SELECTED Arch: ${KernelArch}")
+message("SELECTED Platform: ${KernelPlatform}")
+message("SELECTED Kernel Arch: ${KernelSel4Arch}")
 
 # Declare a cache variable that enables/disablings the forcing of cache variables to
 # the specific test values. By default it is disabled
