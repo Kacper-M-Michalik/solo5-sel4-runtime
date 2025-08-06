@@ -11,7 +11,6 @@ list(
         ${project_modules}
 )
 
-# Breaks running x86_64 in QEMU?
 #set(SEL4_CONFIG_DEFAULT_ADVANCED ON)
 
 include(application_settings)
@@ -58,11 +57,15 @@ set(KernelArmHypervisorSupport OFF CACHE BOOL "" FORCE)
 #    if(SIMULATION)
 #        ApplyCommonSimulationSettings(${KernelSel4Arch})
 #    else()
-if(KernelArchX86)
-    set(KernelIOMMU ON CACHE BOOL "" FORCE)
-endif()
+#if(KernelArchX86)
+#    set(KernelIOMMU ON CACHE BOOL "" FORCE)
+#endif()
 #    endif()
 
-ApplyCommonReleaseVerificationSettings(${RELEASE} ${VERIFICATION})
-
 #endif()
+
+if(SIMULATION)
+    ApplyCommonSimulationSettings(${KernelSel4Arch})
+endif()
+
+ApplyCommonReleaseVerificationSettings(${RELEASE} ${VERIFICATION})

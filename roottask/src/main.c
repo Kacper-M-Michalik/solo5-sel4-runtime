@@ -1,6 +1,7 @@
 #include <sel4/sel4.h>
 #include <sel4runtime.h>
 #include <simple/simple.h>
+#include <simple-default/simple-default.h>
 #include <stdio.h>
 
 int main(void)
