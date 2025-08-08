@@ -18,5 +18,7 @@
     <project name="solo5-sel4-runtime" remote="runtime" revision="main" path="projects/solo5-sel4-runtime">
         <linkfile src="README.md" dest="README.md"/>        
         <linkfile src="easy-settings.cmake" dest="easy-settings.cmake"/>
+        <linkfile src="solo5" dest="solo5">
+        <linkfile src="unikernels" dest="unikernels">
     </project>
 </manifest>

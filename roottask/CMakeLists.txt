@@ -13,7 +13,7 @@ sel4_libs_import_libraries()
 
 file(
     GLOB
-        static
+        #static
         src/*.c
         #src/arch/${KernelArch}/*.c
         #src/plat/${KernelPlatform}/*.c
@@ -21,13 +21,22 @@ file(
         #src/plat/${KernelPlatform}/*.S
 )
 
-add_executable(runtimeroot EXCLUDE_FROM_ALL ${static})
+#include(cpio)
+#MakeCPIO(archive.o "$<TARGET_FILE:app>")
+#get_property(rumprunapps GLOBAL PROPERTY rumprunapps_property)
+#set(cpiostring "")
+#foreach(app_name IN LISTS rumprunapps)
+#    list(APPEND cpiostring $<TARGET_PROPERTY:${app_name},BAKED_LOCATION>)
+#endforeach()
+#MakeCPIO(archive.o "${cpiostring}" DEPENDS ${rumprunapps})
+
+add_executable(runtimeroot archive.o EXCLUDE_FROM_ALL ${static})
+
 target_include_directories(runtimeroot PRIVATE "include")
 target_link_libraries(
     runtimeroot
     PUBLIC
         sel4
-        #sel4_autoconf
         sel4runtime
         muslc
         sel4muslcsys        

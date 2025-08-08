@@ -1,19 +1,6 @@
-This repository is a template providing standard file boilerplate to encourage
-shared best practices for all projects created in our organization. Please
-improve it as the need arises.
+# solo5-sel4-runtime
 
-To get started:
-
-- [ ] Click the green `Use this template` button in the upper right, and select
-      "Create a new repository".
-- [ ] Will in the necessary data in the repo creating form.
-- [ ] Run `git grep TODO` to see all the locations needing attention. Replace
-      any text of the form `${FOO}` with the appropriate values.
-- [ ] Delete this task list and the preamble.
-
-# ${PROJECT_NAME}
-
-<!-- TODO -->
+See [An Internal Link](/docs/USING.md)
 
 ## Synopsis
 

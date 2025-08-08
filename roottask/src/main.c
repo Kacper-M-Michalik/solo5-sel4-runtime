@@ -7,17 +7,25 @@
 
 int main(int argc, char *argv[]) 
 {
-    printf("Hello, World!\n");
+    //Setup logging/debugging info
+    //seL4_CapInitThreadTCB provided by sel4runtime.h
+    NAME_THREAD(seL4_CapInitThreadTCB, "roottask");
+    zf_log_set_tag_prefix("ROOTTASK:");
 
-    seL4_BootInfo *info = platsupport_get_bootinfo();
+    //Read boot up information
+    seL4_BootInfo* bootInfo = platsupport_get_bootinfo();
+    ZF_LOGF_IF(bootInfo == NULL, "Failed to get bootinfo.");
 
-    size_t initial_cnode_object_size = 1lu<<(info->initThreadCNodeSizeBits);
-    printf("Initial CNode is %zu slots in size\n", initial_cnode_object_size);
+    size_t initialCNodeSize = 1lu<<(bootInfo->initThreadCNodeSizeBits);
+    printf("Initial CNode is %zu slots in size\n", initialCNodeSize);
 
     simple_t simple_env;  
-    simple_default_init_bootinfo(&simple_env, info);
+    simple_default_init_bootinfo(&simple_env, bootInfo);
+    simple_print(&simple_env);
 
-    printf("Test\n");
+    printf("Read bootinfo successfully.\n");
+
+    while (true) {}
 
     return 0;
 }
